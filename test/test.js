@@ -1,7 +1,7 @@
 var detective = require('../');
 var assert = require('assert');
 
-describe('detective-sass', function() {
+describe('detective-less', function() {
   function test(src, deps, opts) {
     assert.deepEqual(detective(src, opts), deps);
   }
@@ -33,7 +33,7 @@ describe('detective-sass', function() {
   });
 
   it('dangles the parsed AST', function() {
-    detective('@import "_foo.sass";');
+    detective('@import "foo.less";');
     assert.ok(detective.ast);
   });
 
@@ -45,9 +45,9 @@ describe('detective-sass', function() {
   });
 
   describe('sass', function() {
-    it('returns the dependencies of the given .sass file content', function() {
-      test('@import _foo', ['_foo']);
-      test('@import        _foo', ['_foo']);
+    it('returns the dependencies of the given .less file content', function() {
+      test('@import foo', ['foo']);
+      test('@import        foo', ['foo']);
       test('@import reset', ['reset']);
     });
   });

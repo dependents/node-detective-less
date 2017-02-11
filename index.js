@@ -1,9 +1,9 @@
 var Walker = require('node-source-walk');
-var sass = require('gonzales-pe');
-var debug = require('debug')('detective-sass');
+var gonzales = require('gonzales-pe');
+var debug = require('debug')('detective-less');
 
 /**
- * Extract the @import statements from a given sass file's content
+ * Extract the @import statements from a given less file's content
  *
  * @param  {String} fileContent
  * @return {String[]}
@@ -17,7 +17,7 @@ module.exports = function detective(fileContent) {
 
   try {
     debug('content: ' + fileContent);
-    ast = sass.parse(fileContent, { syntax: 'sass' });
+    ast = gonzales.parse(fileContent, { syntax: 'less' });
   } catch (e) {
     debug('parse error: ', e.message);
     ast = {};
