@@ -1,4 +1,6 @@
-### detective-less [![npm](http://img.shields.io/npm/v/detective-less.svg)](https://npmjs.org/package/detective-less) [![npm](http://img.shields.io/npm/dm/detective-less.svg)](https://npmjs.org/package/detective-less)
+# NOTE: This package is not published. Please use https://www.npmjs.com/package/detective-less instead.
+
+### detective-less
 
 > Find the dependencies of a less file
 
