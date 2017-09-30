@@ -1,6 +1,6 @@
 {
   "name": "detective-less",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find the dependencies of a less file",
   "main": "index.js",
   "scripts": {
