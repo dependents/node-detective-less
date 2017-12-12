@@ -1,6 +1,6 @@
 {
   "name": "detective-less",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find the dependencies of a less file",
   "main": "index.js",
   "scripts": {
@@ -16,14 +16,16 @@
     "ast",
     "dependencies"
   ],
-  "contributors": [{
-    "name": "Joel Kemp",
-    "email": "joel@mrjoelkemp.com"
-  },
-  {
-    "name": "Michael Orenstein",
-    "email": "michael@whiteshadows.me"
-  }],
+  "contributors": [
+    {
+      "name": "Joel Kemp",
+      "email": "joel@mrjoelkemp.com"
+    },
+    {
+      "name": "Michael Orenstein",
+      "email": "michael@whiteshadows.me"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mike-Dax/node-detective-less/issues"
