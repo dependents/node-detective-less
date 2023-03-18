@@ -1,4 +1,4 @@
-### @dependents/detective-less [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-less/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-less/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-less)](https://www.npmjs.com/package/detective-less) [![npm](https://img.shields.io/npm/dm/detective-less)](https://www.npmjs.com/package/detective-less)
+### @dependents/detective-less [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-less/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-less/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/@dependents/detective-less)](https://www.npmjs.com/package/@dependents/detective-less) [![npm](https://img.shields.io/npm/dm/@dependents/detective-less)](https://www.npmjs.com/package/@dependents/detective-less)
 
 > Find the dependencies of a less file
 
