@@ -1,22 +1,27 @@
-### detective-less [![npm](http://img.shields.io/npm/v/detective-less.svg)](https://npmjs.org/package/detective-less) [![npm](http://img.shields.io/npm/dm/detective-less.svg)](https://npmjs.org/package/detective-less)
+### detective-less [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-less/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-less/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-less)](https://www.npmjs.com/package/detective-less) [![npm](https://img.shields.io/npm/dm/detective-less)](https://www.npmjs.com/package/detective-less)
 
 > Find the dependencies of a less file
 
-`npm install --save detective-less`
+```sh
+npm install detective-less
+```
 
-This is a fork of a package by [mrjoelkemp](https://github.com/mrjoelkemp/) given a lack of a less detective, it is the counterpart to  [detective](https://github.com/substack/node-detective), [detective-amd](https://github.com/mrjoelkemp/node-detective-amd), [detective-sass](https://github.com/mrjoelkemp/node-detective-sass), [detective-scss](https://github.com/mrjoelkemp/node-detective-scss) and [detective-es6](https://github.com/mrjoelkemp/node-detective-es6).
+**Note:** This is specific to the .less style syntax.
+
+It's the LESS counterpart to [detective](https://github.com/substack/node-detective), [detective-amd](https://github.com/dependents/node-detective-amd), and [detective-es6](https://github.com/dependents/node-detective-es6).
 
 * The AST is generated using the [gonzales-pe](https://github.com/tonyganch/gonzales-pe) parser.
 
 ### Usage
 
 ```js
-var detective = require('detective-less');
+const fs = require('fs');
+const detective = require('detective-less');
 
-var content = fs.readFileSync('styles.less', 'utf8');
+const content = fs.readFileSync('styles.less', 'utf8');
 
 // list of imported file names (ex: 'foo.less', 'foo', etc)
-var dependencies = detective(content);
+const dependencies = detective(content);
 ```
 
 ### License

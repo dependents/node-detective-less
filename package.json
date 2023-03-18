@@ -3,12 +3,19 @@
   "version": "1.0.2",
   "description": "Find the dependencies of a less file",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
-    "test": "mocha test/test.js"
+    "lint": "eslint index.js \"test/*.js\"",
+    "fix": "npm run lint -- --fix",
+    "mocha": "mocha",
+    "test": "npm run lint && npm run mocha",
+    "test:ci": "c8 npm run mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mike-Dax/node-detective-less.git"
+    "url": "git+https://github.com/dependents/node-detective-less.git"
   },
   "keywords": [
     "detective",
@@ -16,30 +23,25 @@
     "ast",
     "dependencies"
   ],
+  "author": "Joel Kemp <joel@mrjoelkemp.com>",
   "contributors": [
-    {
-      "name": "Joel Kemp",
-      "email": "joel@mrjoelkemp.com"
-    },
-    {
-      "name": "Michael Orenstein",
-      "email": "michael@whiteshadows.me"
-    }
+    "Michael Orenstein <michael@whiteshadows.me>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mike-Dax/node-detective-less/issues"
+    "url": "https://github.com/dependents/node-detective-less/issues"
   },
-  "homepage": "https://github.com/Mike-Dax/node-detective-less",
+  "homepage": "https://github.com/dependents/node-detective-less",
   "engines": {
-    "node": ">= 6.0"
-  },
-  "devDependencies": {
-    "mocha": "^5.2.0"
+    "node": ">=12"
   },
   "dependencies": {
-    "debug": "^4.0.0",
-    "gonzales-pe": "^4.2.3",
-    "node-source-walk": "^4.0.0"
+    "gonzales-pe": "^4.3.0",
+    "node-source-walk": "^5.0.0"
+  },
+  "devDependencies": {
+    "c8": "^7.13.0",
+    "eslint": "^8.36.0",
+    "mocha": "^9.2.2"
   }
 }
