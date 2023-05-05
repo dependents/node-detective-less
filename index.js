@@ -9,18 +9,18 @@ const debug = debuglog('detective-less');
 /**
  * Extract the @import statements from a given less file's content
  *
- * @param  {String} fileContent
+ * @param  {String} content
  * @return {String[]}
  */
-module.exports = function detective(fileContent) {
-  if (typeof fileContent === 'undefined') throw new Error('content not given');
-  if (typeof fileContent !== 'string') throw new Error('content is not a string');
+module.exports = function detective(content) {
+  if (content === undefined) throw new Error('content not given');
+  if (typeof content !== 'string') throw new Error('content is not a string');
 
   let ast = {};
 
   try {
-    debug('content: %s', fileContent);
-    ast = gonzales.parse(fileContent, { syntax: 'less' });
+    debug('content: %s', content);
+    ast = gonzales.parse(content, { syntax: 'less' });
   } catch (error) {
     debug('parse error: %s', error.message);
   }
