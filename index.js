@@ -10,9 +10,11 @@ const debug = debuglog('detective-less');
  * Extract the @import statements from a given less file's content
  *
  * @param  {String} content
+ * @param  {Object} options
+ * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
  * @return {String[]}
  */
-module.exports = function detective(content) {
+module.exports = function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
   if (typeof content !== 'string') throw new Error('content is not a string');
 
@@ -31,9 +33,14 @@ module.exports = function detective(content) {
   let dependencies = [];
 
   walker.walk(ast, node => {
-    if (!isImportStatement(node)) return;
+    if (isImportStatement(node)) {
+      dependencies = [...dependencies, ...extractDependencies(node)];
+      return;
+    }
 
-    dependencies = [...dependencies, ...extractDependencies(node)];
+    if (options?.url && node.type === 'uri') {
+      dependencies = [...dependencies, ...extractUriDependencies(node)];
+    }
   });
 
   return dependencies;
@@ -53,5 +60,11 @@ function isImportStatement(node) {
 function extractDependencies(importStatementNode) {
   return importStatementNode.content
     .filter(innerNode => ['string', 'ident'].includes(innerNode.type))
+    .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
+}
+
+function extractUriDependencies(importStatementNode) {
+  return importStatementNode.content
+    .filter(innerNode => ['string', 'ident', 'raw'].includes(innerNode.type))
     .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
 }

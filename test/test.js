@@ -70,4 +70,28 @@ lessSuite('handles comma-separated imports (#2)', () => {
   test('@import "_foo.less"\n@import "_bar.less"', ['_foo.less', '_bar.less']);
 });
 
+lessSuite('returns the url dependencies when enable url', () => {
+  test(
+    '@font-face { font-family: "Trickster"; src: local("Trickster"), url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1), url("trickster-outline.otf") format("opentype"), url("trickster-outline.woff") format("woff"); }',
+    [
+      'trickster-COLRv1.otf',
+      'trickster-outline.otf',
+      'trickster-outline.woff'
+    ],
+    { url: true }
+  );
+
+  test(
+    'body { div {background: no-repeat center/80% url("foo.png"); }}',
+    ['foo.png'],
+    { url: true }
+  );
+
+  test(
+    'body { div {background: no-repeat center/80% url(foo.png); }}',
+    ['foo.png'],
+    { url: true }
+  );
+});
+
 lessSuite.run();
