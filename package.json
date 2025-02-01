@@ -1,6 +1,6 @@
 {
   "name": "@dependents/detective-less",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Find the dependencies of a less file",
   "main": "index.js",
   "publishConfig": {
