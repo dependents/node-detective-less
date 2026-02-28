@@ -38,7 +38,7 @@ module.exports = function detective(content, options = {}) {
       return;
     }
 
-    if (options?.url && node.type === 'uri') {
+    if (options.url && node.type === 'uri') {
       dependencies = [...dependencies, ...extractDependencies(node, ['string', 'ident', 'raw'])];
     }
   });
