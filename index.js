@@ -34,12 +34,12 @@ module.exports = function detective(content, options = {}) {
 
   walker.walk(ast, node => {
     if (isImportStatement(node)) {
-      dependencies = [...dependencies, ...extractDependencies(node)];
+      dependencies = [...dependencies, ...extractDependencies(node, ['string', 'ident'])];
       return;
     }
 
-    if (options?.url && node.type === 'uri') {
-      dependencies = [...dependencies, ...extractUriDependencies(node)];
+    if (options.url && node.type === 'uri') {
+      dependencies = [...dependencies, ...extractDependencies(node, ['string', 'ident', 'raw'])];
     }
   });
 
@@ -57,14 +57,8 @@ function isImportStatement(node) {
   return atKeyword.content[0].content === 'import';
 }
 
-function extractDependencies(importStatementNode) {
+function extractDependencies(importStatementNode, innerNodeTypes) {
   return importStatementNode.content
-    .filter(innerNode => ['string', 'ident'].includes(innerNode.type))
-    .map(identifierNode => identifierNode.content.replaceAll(/["']/g, ''));
-}
-
-function extractUriDependencies(importStatementNode) {
-  return importStatementNode.content
-    .filter(innerNode => ['string', 'ident', 'raw'].includes(innerNode.type))
+    .filter(innerNode => innerNodeTypes.includes(innerNode.type))
     .map(identifierNode => identifierNode.content.replaceAll(/["']/g, ''));
 }
