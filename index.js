@@ -1,6 +1,6 @@
 'use strict';
 
-const { debuglog } = require('util');
+const { debuglog } = require('node:util');
 const Walker = require('node-source-walk');
 const gonzales = require('gonzales-pe');
 
@@ -23,7 +23,7 @@ module.exports = function detective(content, options = {}) {
   try {
     debug('content: %s', content);
     ast = gonzales.parse(content, { syntax: 'less' });
-  } catch (error) {
+  } catch(error) {
     debug('parse error: %s', error.message);
   }
 
