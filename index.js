@@ -1,8 +1,6 @@
-'use strict';
-
-const { debuglog } = require('node:util');
-const Walker = require('node-source-walk');
-const gonzales = require('gonzales-pe');
+import { debuglog } from 'node:util';
+import Walker from 'node-source-walk';
+import gonzales from 'gonzales-pe';
 
 const debug = debuglog('detective-less');
 
@@ -14,7 +12,7 @@ const debug = debuglog('detective-less');
  * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
  * @return {String[]}
  */
-module.exports = function detective(content, options = {}) {
+export default function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
   if (typeof content !== 'string') throw new Error('content is not a string');
 
@@ -44,7 +42,7 @@ module.exports = function detective(content, options = {}) {
   });
 
   return dependencies;
-};
+}
 
 function isImportStatement(node) {
   if (!node || node.type !== 'atrule') return false;
