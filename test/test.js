@@ -34,7 +34,7 @@ errorSuite('does not throw on broken syntax', () => {
   });
 });
 
-errorSuite('supplies an empty object as the "parsed" ast', () => {
+errorSuite('supplies an empty object as the "parsed" ast when there is a parse error', () => {
   detective('|');
   assert.equal(detective.ast, {});
 });
@@ -74,9 +74,17 @@ lessSuite('ignores non-import atrules', () => {
   test('body { @media print { color: blue; } }', []);
 });
 
-lessSuite('returns the url dependencies when enable url', () => {
+lessSuite('returns the url dependencies when url is enabled', () => {
   test(
-    '@font-face { font-family: "Trickster"; src: local("Trickster"), url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1), url("trickster-outline.otf") format("opentype"), url("trickster-outline.woff") format("woff"); }',
+    `
+      @font-face {
+        font-family: "Trickster";
+        src: local("Trickster"),
+          url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1),
+          url("trickster-outline.otf") format("opentype"),
+          url("trickster-outline.woff") format("woff");
+      }
+    `,
     [
       'trickster-COLRv1.otf',
       'trickster-outline.otf',
