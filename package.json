@@ -1,6 +1,6 @@
 {
   "name": "@dependents/detective-less",
-  "version": "5.0.3",
+  "version": "6.0.0",
   "description": "Find the dependencies of a less file",
   "type": "module",
   "exports": {
