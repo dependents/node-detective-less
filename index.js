@@ -7,10 +7,10 @@ const debug = debuglog('detective-less');
 /**
  * Extract the @import statements from a given less file's content
  *
- * @param  {String} content
- * @param  {Object} options
- * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
- * @return {String[]}
+ * @param {string} content
+ * @param {object} [options]
+ * @param {boolean} [options.url] - include url() references
+ * @returns {string[]}
  */
 export default function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
@@ -44,6 +44,10 @@ export default function detective(content, options = {}) {
   return dependencies;
 }
 
+/**
+ * @param {object} node
+ * @returns {boolean}
+ */
 function isImportStatement(node) {
   if (!node || node.type !== 'atrule') return false;
   if (node.content.length === 0 || node.content[0].type !== 'atkeyword') return false;
@@ -55,6 +59,11 @@ function isImportStatement(node) {
   return atKeyword.content[0].content === 'import';
 }
 
+/**
+ * @param {object} importStatementNode
+ * @param {string[]} innerNodeTypes
+ * @returns {string[]}
+ */
 function extractDependencies(importStatementNode, innerNodeTypes) {
   return importStatementNode.content
     .filter(innerNode => innerNodeTypes.includes(innerNode.type))
